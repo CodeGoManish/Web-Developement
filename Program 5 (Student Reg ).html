@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #4e8cdd;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+
+    <form action="/submit_registration" method="post">
+        <!-- Full Name -->
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <!-- Email -->
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Password -->
+        <label for="ROLL NUMBER ">Roll Number :</label>
+        <input type="ROLL NUMBER" id="ROLL NUMBER" name="ROLL NUMBER" required>
+
+        <!-- Date of Birth -->
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <!-- Gender -->
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+
+        <!-- Courses (Dropdown) -->
+        <label for="course">Select Course:</label>
+        <select id="course" name="course" required>
+            <option value="computer_science">Computer Science</option>
+            <option value="business_administration">Business Administration</option>
+            <option value="mechanical_engineering">Mechanical Engineering</option>
+            <option value="literature">Literature</option>
+        </select>
+
+        <!-- Address -->
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="1" cols="20" required></textarea>
+
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <!-- Agree to Terms (Checkbox) -->
+        <label>
+            <input type="checkbox" name="terms" required>
+            I agree to the <a href="#">terms and conditions</a>
+        </label>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Register">
+    </form>
+
+</body>
+</html>
