@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form with Validations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    form {
+      max-width: 400px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin: 4px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form id="registrationForm" novalidate>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required minlength="3" maxlength="15">
+      <span class="error" id="usernameError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <span class="error" id="emailError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required minlength="6">
+      <span class="error" id="passwordError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+      <span class="error" id="dobError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <span class="error" id="genderError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio" rows="4" required minlength="10"></textarea>
+      <span class="error" id="bioError"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="agree">
+        <input type="checkbox" id="agree" name="agree" required>
+        I agree to the terms and conditions
+      </label>
+      <span class="error" id="agreeError"></span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', (event) => {
+      let isValid = true;
+
+      // Validate Username
+      const username = document.getElementById('username');
+      const usernameError = document.getElementById('usernameError');
+      if (username.value.trim() === '' || username.value.length < 3 || username.value.length > 15) {
+        usernameError.textContent = 'Username must be between 3 and 15 characters.';
+        isValid = false;
+      } else {
+        usernameError.textContent = '';
+      }
+
+      // Validate Email
+      const email = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      if (!email.validity.valid) {
+        emailError.textContent = 'Please enter a valid email address.';
+        isValid = false;
+      } else {
+        emailError.textContent = '';
+      }
+
+      // Validate Password
+      const password = document.getElementById('password');
+      const passwordError = document.getElementById('passwordError');
+      if (password.value.length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters.';
+        isValid = false;
+      } else {
+        passwordError.textContent = '';
+      }
+
+      // Validate Date of Birth
+      const dob = document.getElementById('dob');
+      const dobError = document.getElementById('dobError');
+      if (!dob.value) {
+        dobError.textContent = 'Please select your date of birth.';
+        isValid = false;
+      } else {
+        dobError.textContent = '';
+      }
+
+      // Validate Gender
+      const gender = document.getElementById('gender');
+      const genderError = document.getElementById('genderError');
+      if (!gender.value) {
+        genderError.textContent = 'Please select your gender.';
+        isValid = false;
+      } else {
+        genderError.textContent = '';
+      }
+
+      // Validate Bio
+      const bio = document.getElementById('bio');
+      const bioError = document.getElementById('bioError');
+      if (bio.value.trim().length < 10) {
+        bioError.textContent = 'Bio must be at least 10 characters.';
+        isValid = false;
+      } else {
+        bioError.textContent = '';
+      }
+
+      // Validate Agreement
+      const agree = document.getElementById('agree');
+      const agreeError = document.getElementById('agreeError');
+      if (!agree.checked) {
+        agreeError.textContent = 'You must agree to the terms and conditions.';
+        isValid = false;
+      } else {
+        agreeError.textContent = '';
+      }
+
+      // Prevent form submission if any field is invalid
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
