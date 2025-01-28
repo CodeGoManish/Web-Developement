@@ -1,0 +1,69 @@
+
+<html>
+<head>
+    
+    <title>Student Registration Form</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+    <form id="studentForm" onsubmit="return validateForm()">
+        <label for="studentId">Student ID:</label><br>
+        <input type="text" id="studentId" name="studentId" placeholder="Enter 10-digit alphanumeric ID"><br>
+        <span id="studentIdError" class="error"></span><br><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name"><br>
+        <span id="nameError" class="error"></span><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" placeholder="Enter your age"><br>
+        <span id="ageError" class="error"></span><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Clear previous error messages
+            document.getElementById('studentIdError').innerText = '';
+            document.getElementById('nameError').innerText = '';
+            document.getElementById('ageError').innerText = '';
+
+            // Validate Student ID (10-digit alphanumeric)
+            const studentId = document.getElementById('studentId').value;
+            const studentIdPattern = /^[a-zA-Z0-9]{10}$/;
+            if (!studentIdPattern.test(studentId)) {
+                document.getElementById('studentIdError').innerText = 'Student ID must be a 10-digit alphanumeric value.';
+                isValid = false;
+            }
+
+            // Validate Name (only alphabetic characters)
+            const name = document.getElementById('name').value;
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (!namePattern.test(name)) {
+                document.getElementById('nameError').innerText = 'Name should contain only alphabetic characters.';
+                isValid = false;
+            }
+
+            // Validate Age (non-empty)
+            const age = document.getElementById('age').value;
+            if (age === '') {
+                document.getElementById('ageError').innerText = 'Age field cannot be empty.';
+                isValid = false;
+            }
+
+            // Return false to prevent form submission if validation fails
+            return isValid;
+        }
+    </script>
+
+</body>
+</html>
